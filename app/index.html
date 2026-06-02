@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Pulse</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <header class="page-header">
+        <div class="page-header-inner">
+          <h1 class="page-title">Project Pulse</h1>
+          <p class="page-subtitle">Live overview of all active projects and their current status</p>
+        </div>
+      </header>
+
+      <main id="dashboard" class="dashboard"></main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("project-data.json")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Failed to load project data (${response.status})`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const dashboard = document.getElementById("dashboard");
+
+            data.projects.forEach((project) => {
+              const statusClass = project.status.toLowerCase().replace(/\s+/g, "-");
+              const priorityClass = project.priority.toLowerCase().replace(/\s+/g, "-");
+
+              const card = document.createElement("article");
+              card.className = "project-card";
+              card.innerHTML = `
+                <div class="card-header">
+                  <span class="card-header-title">${project.name}</span>
+                  <span class="status-${statusClass}">${project.status}</span>
+                </div>
+                <div class="card-body">
+                  <div class="card-field">
+                    <span class="card-label">Owner</span>
+                    <span class="card-value">${project.owner}</span>
+                  </div>
+                  <div class="card-field">
+                    <span class="card-label">Status</span>
+                    <span class="card-value"><span class="status-${statusClass}">${project.status}</span></span>
+                  </div>
+                  <div class="card-field">
+                    <span class="card-label">Priority</span>
+                    <span class="card-value"><span class="priority-${priorityClass}">${project.priority}</span></span>
+                  </div>
+                  <div class="card-field">
+                    <span class="card-label">Recent Activity</span>
+                    <span class="card-value">${project.recentActivity}</span>
+                  </div>
+                </div>
+              `;
+
+              dashboard.appendChild(card);
+            });
+          })
+          .catch((error) => {
+            const dashboard = document.getElementById("dashboard");
+            dashboard.innerHTML = `<p class="error-message">Error loading projects: ${error.message}</p>`;
+          });
+      });
+    </script>
+  </body>
+</html>

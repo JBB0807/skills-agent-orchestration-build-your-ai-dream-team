@@ -1,0 +1,46 @@
+{
+  "projects": [
+    {
+      "name": "Atlas Platform Migration",
+      "owner": "Priya Nair",
+      "status": "Active",
+      "recentActivity": "Merged PR #112 — database connection pooling refactor",
+      "priority": "High"
+    },
+    {
+      "name": "Onboarding Flow Redesign",
+      "owner": "Marcus Chen",
+      "status": "Planning",
+      "recentActivity": "Kickoff meeting held, wireframes shared with stakeholders",
+      "priority": "Medium"
+    },
+    {
+      "name": "Payment Gateway v2",
+      "owner": "Sofia Reyes",
+      "status": "Completed",
+      "recentActivity": "Released v2.0.0 to production, all smoke tests passed",
+      "priority": "High"
+    },
+    {
+      "name": "Internal Analytics Dashboard",
+      "owner": "Jordan Lee",
+      "status": "On Hold",
+      "recentActivity": "Blocked pending data privacy review from legal team",
+      "priority": "Low"
+    },
+    {
+      "name": "Mobile Push Notifications",
+      "owner": "Anika Patel",
+      "status": "Active",
+      "recentActivity": "Merged PR #42 — auth token refresh fix for iOS",
+      "priority": "Medium"
+    },
+    {
+      "name": "Search Indexing Overhaul",
+      "owner": "Tyler Brooks",
+      "status": "Active",
+      "recentActivity": "Deployed Elasticsearch upgrade to staging environment",
+      "priority": "High"
+    }
+  ]
+}
